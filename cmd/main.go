@@ -30,7 +30,7 @@ func main() {
 
 	// 1. Extract Text
 	start := time.Now()
-	text, err := pdf.ExtractText(*filePath)
+	text, err := pdf.ExtractText(context.Background(), *filePath)
 	if err != nil {
 		log.Fatalf("Error extracting text: %v", err)
 	}

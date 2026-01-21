@@ -1,6 +1,7 @@
 package pdf_test
 
 import (
+	"context"
 	"path/filepath"
 	"strings"
 	"testing"
@@ -24,7 +25,7 @@ func TestExtractText(t *testing.T) {
 	}
 
 	// 2. Test extraction
-	text, err := pdf.ExtractText(pdfPath)
+	text, err := pdf.ExtractText(context.Background(), pdfPath)
 	if err != nil {
 		t.Fatalf("ExtractText returned error: %v", err)
 	}
@@ -37,7 +38,7 @@ func TestExtractText(t *testing.T) {
 }
 
 func TestExtractText_FileNotFound(t *testing.T) {
-	_, err := pdf.ExtractText("non-existent-file.pdf")
+	_, err := pdf.ExtractText(context.Background(), "non-existent-file.pdf")
 	if err == nil {
 		t.Error("Expected error for non-existent file, got nil")
 	}
